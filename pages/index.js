@@ -9,15 +9,16 @@ export default function Home() {
     try {
       setLoading(true)
       axios
-        .get("https://online-movie-database.p.rapidapi.com/auto-complete", {
-          params: { q: 'game of thr' },
+        .get('https://anime-db.p.rapidapi.com/anime', {
+          params: {
+          },
           headers: {
-            'X-RapidAPI-Key': '3a00b26557msh72a6e1ba2cb53c1p1a8297jsn5eb9cb53fbfd',
-            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+            'X-RapidAPI-Key':  '365bb86ab7mshf4c218414d50ef5p1ff7d6jsna7546d0d9703',
+            'X-RapidAPI-Host': 'anime-db.p.rapidapi.com'
           },
 
         })
-        .then((res) => setMovie(res.data.d))
+        .then((res) => setMovie(res.data))
         .catch((error) => console.log(error))
       setLoading(false)
     } catch (error) {
@@ -36,17 +37,13 @@ export default function Home() {
   return (
     <>
       {
-        loading ? "hassan" : movie && movie.map(item => (
-          <div key={item.id}>
-            <h1>{item.l}</h1>
-            {
-              <img src={item.i ?.imageUrl} alt="okkk" />
-              // i.i.map((i) => (
-              //   <div>
-              //     <img src={i.imageUrl} alt="" />
-              //   </div>
-              // ))
-            }
+        loading ? "taha" : movie && movie?.data?.map(item => (
+          <div key={item._id}>
+            <h1>{item.title}</h1>
+
+            <img src={item.image} alt="okkk" />
+
+
           </div>
         ))
       }
